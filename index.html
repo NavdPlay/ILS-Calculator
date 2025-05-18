@@ -97,6 +97,25 @@
         border: 1px solid #289ed6;
         box-shadow: 0 0 0 1px #289ed6;
       }
+
+      hr {
+        display: block;
+        width: 90%;
+        height: 5px;
+        margin: 15px 0 15px 5%;
+        border: none;
+        box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.1);
+      }
+
+      .calculate {
+        display: block;
+        background-color: rgba(34, 104, 138, 0.8);
+        width: 170px;
+        color: #eeeeee;
+        border: 2px solid rgba(255, 255, 255, 0.114);
+        border-radius: 4px;
+        cursor: pointer;
+      }
     </style>
   </head>
   <body>
@@ -114,18 +133,23 @@
               GS (&deg;)
             </h2>
             <input type="number" id="glideslop" class="input" maxlength="4" autocomplete="off" placeholder="3" value="3">
+          </div>
+          <hr>
+          <button class="calculate">
+            <span>Calculate</span>
             <!-- <span class="material-symbols-outlined">
               flight_land
             </span> -->
-          </div>
+          </button>
         </div>
         <!-- <div class="calculator-outputs">
 
         </div> -->
-        <script>
-
-        </script>
       </div>
     </div>
+
+    <script>
+
+    </script>
   </body>
 </html>
