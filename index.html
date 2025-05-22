@@ -77,7 +77,7 @@
       .input {
         background-color: #2e3036;
         padding: 5px 0;
-        width: clamp(115px 100% 200px);
+        width: 100%;
         color: #dddddd;
         font-family: Arial, Helvetica, sans-serif;
         font-size: 13.4145px;
@@ -136,6 +136,34 @@
         padding-top: 30px;
         border-top: 1px solid rgba(0, 0, 0, 0.1);
       }
+
+      h3 {
+        background-color: #25272b;
+        color: #ffffff;
+        font-size: 12.375px;
+        font-weight: 400;
+        line-height: 24px;
+        text-indent: 15px;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        border-radius: 4px 4px 0 0;
+      }
+      .calculation-result {
+        background-color: rgba(128, 128, 128, 0.1);
+        border-radius: 0 0 4px 4px;
+        border-left: 5px solid rgba(0, 0, 0, 0);
+        min-height: 100px;
+        color: #dddddd;
+        font-family: 'Droid Sans';
+        font-size: 12.045px;
+        line-height: 13.86px;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.75);
+        padding: 10px 3px 10px 10px;
+      }
+
+      #init {
+        color: #dddddd;
+        opacity: 0.5;
+      }
     </style>
   </head>
   <body>
@@ -163,7 +191,10 @@
           </button>
         </div>
         <div class="calculator-outputs">
-
+          <h3>Calculation Output</h3>
+          <div class="calculation-result" id="result">
+            <span id="init">Ready to calculate</span>
+          </div>
         </div>
       </div>
     </div>
