@@ -174,16 +174,16 @@
             <h2 class="input-label">
               Distance (NM)
             </h2>
-            <input type="number" id="distance" class="input" maxlength="4" autocomplete="off" placeholder="10">
+            <input type="number" id="distance" class="input" maxlength="4" autocomplete="off" placeholder="10" data-max="100" data-min="0" onkeyup="validateLength(this)">
           </div>
           <div class="input-container">
             <h2 class="input-label">
               G/S (&deg;)
             </h2>
-            <input type="number" id="glideslope" class="input" maxlength="4" autocomplete="off" placeholder="3" value="3">
+            <input type="number" id="glideslope" class="input" maxlength="4" autocomplete="off" placeholder="3" value="3" data-max="10" data-min="0" onkeyup="validateLength(this)">
           </div>
           <hr>
-          <button class="calculate">
+          <button class="calculate" onclick="calculateAltitude()">
             <span>Calculate</span>
             <span class="material-symbols-outlined plane">
               flight_land
@@ -193,14 +193,46 @@
         <div class="calculator-outputs">
           <h3>Calculation Output</h3>
           <div class="calculation-result" id="result">
-            <span id="init">Ready to calculate</span>
+            <pre id="init">Ready to calculate</pre>
           </div>
         </div>
       </div>
     </div>
 
     <script>
+      function validateLength(input) {
+        const maxInputValue = parseInt(input.dataset.max);
+        const minInputValue = parseInt(input.dataset.min);
 
+        if (input.value >= maxInputValue || input.value <= minInputValue) {
+          input.value = input.value >= maxInputValue ? input.value = maxInputValue - 0.1 : input.value = minInputValue + 0.1;
+        }
+      }
+
+      const nmiToFT = 6076.12;
+
+      function calculateAltitude() {
+        const distanceInput = document.getElementById('distance');
+        if (distanceInput.value == "") {distanceInput.value = 10}
+
+        const inputDistance = parseFloat(distanceInput.value).toFixed(1);
+        const inputGlideslope = parseFloat(document.getElementById('glideslope').value).toFixed(1);
+        const resultPad = document.getElementById('init');
+
+        const altitude = Math.round(parseFloat(inputDistance) * nmiToFT * Math.tan(parseFloat(inputGlideslope) * Math.PI / 180)).toString().padStart(4, "0");
+
+        const templateString = `LANDING GUIDANCE
+
+INPUTS:
+   DISTANCE    ${inputDistance} NM
+   GLIDESLOPE     ${inputGlideslope}&deg;
+
+OUTPUTS:
+   ALTITUDE    ${altitude} FT`;
+
+        resultPad.innerHTML = templateString;
+        resultPad.style.opacity = "1";
+      }
     </script>
   </body>
 </html>
